@@ -77,7 +77,7 @@ layout = html.Div(
     ], style={'margin-top': 0, 'backgroundColor':back_color2}),
     html.Center(html.Div(children= video_list, style={'size':300})),
     html.H3('Interactive Tools', style={'margin-left': 30}),
-    html.A('Sepsis AI', href='/apps/', style={'margin-left': 30}),
+    html.A('Sepsis AI', href='/apps/sepsisModel', style={'margin-left': 30}),
     html.H6(' '),
     html.A('Concepts behind Sepsis AI: Linear Regression', href='/apps/logic', style={'margin-left': 30}),
     html.H6(' '),
