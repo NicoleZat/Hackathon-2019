@@ -21,9 +21,14 @@ layout = html.Div(
                 html.Div(
                     children=[
                         html.A(
-                            'Website Name',
-                            style={'margin':15, 'fontSize':30}
-                        ),
+                            html.Img(
+                                src='https://i.imgur.com/Qp1SMwQ.png',
+                                style={
+                                    'margin': 10,
+                                    'height': '80%',
+                                    # 'width': '10%'
+                                }
+                            ), href='/'),
                         #ul list components
                         html.Ul(
                             children=[
