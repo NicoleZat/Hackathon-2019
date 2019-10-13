@@ -23,15 +23,23 @@ filler_image = html.Img(src='data:image/png;base64,{}'.format(encoded_image.deco
             })
 filler_list = [filler_image]*6
 
-image_filename = 'static/sepsis.png'
+image_filename = 'static/video_still.png'
 encoded_image = base64.b64encode(open(image_filename, 'rb').read())
 our_thumbnail = html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()),
             style={
-                'width':'25%',
+                'width':'28%',
                 'margin': 30
             })
 video_list = [html.A(our_thumbnail, href='/apps/sepsis')]
-    
+
+logo_small = 'static/Blackbox logo-02.png'
+encoded_image = base64.b64encode(open(logo_small, 'rb').read())
+logo_small_thumb = html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()),
+            style={
+                'height' : '80%',
+                'margin': 10
+            })
+
 
 #############
 # Layout
@@ -46,53 +54,46 @@ layout = html.Div(
                 #inside div
                 html.Div(
                     children=[
-                        html.Img(
-                            src='https://i.imgur.com/Qp1SMwQ.png',
-                            style={
-                                'margin':10,
-                                'height': '80%',
-                                # 'width': '10%'
-                                   }
-                        ),
-                        #ul list components
+                        html.A(logo_small_thumb, href='/'),
+                        # ul list components
                         html.Ul(
                             children=[
-                               html.Li(html.A('Home', href='/', style={'color': font_color1})),
-                               html.Li(html.A('Tool Lookup', href='/apps/tool',style={'color': font_color1})),
-                               html.Li(html.A('Tutorial Videos', href='/apps/vid',style={'color': font_color1})),
+                                html.Li(html.A('Home', href='/', style={'color': font_color1})),
+                                html.Li(html.A('Tool Lookup', href='/apps/tool', style={'color': font_color1})),
+                                html.Li(html.A('Tutorial Videos', href='/apps/vid', style={'color': font_color1})),
                             ],
                             id='nav-mobile',
                             className='right hide-off-med-and-down'
                         ),
                     ],
                     className='nav-wrapper'
-                ),style={'background-color':back_color1}),
+                ), style={'background-color': '#151E3D'})
         ],
         className='navbar-fixed'
     ),
 
 html.Div(children=[
         html.Center(
-        dcc.Markdown('''
-#### Tutorial Videos
-Search for the topic area you would like to know more about or browse available videos
-    '''),  
+            children=[
+        html.H1('Tutorial Videos'),
+        html.H5('Search for the topic area you would like to know more about or browse available videos')]
     ),
+    html.Center(
     dcc.Input(
             id='search_val',
             type='text',
             value = '',
-            placeholder= 'Start typting to search',
+            placeholder= 'Start typing to search',
             style={
                 'margin':30,
                 'width': '50%'
             }
         ),
-    ],
-    style={'backgroundColor':back_color2}
+    )]
+    # ,style={'backgroundColor':back_color2}
     ),
-
-    html.Div(id='output_container', children=[])
+html.Center(
+    html.Div(id='output_container', children=[]))
     ])
 
 ################
