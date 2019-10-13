@@ -11,7 +11,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
 from app import app
-from apps import home_teach_app, vid, tool, logic, sepsis
+from apps import home_teach_app, vid, tool, logic, sepsis, sepsisModel
 
 #################
 # App Layout
@@ -43,6 +43,8 @@ def display_page(pathname):
         return sepsis.layout
     elif pathname == '/apps/logic':
         return logic.layout
+    elif pathname == '/apps/sepsisModel':
+        return sepsisModel.layout
     return home_teach_app.layout
 
 ################
