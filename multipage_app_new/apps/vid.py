@@ -83,7 +83,7 @@ html.Div(children=[
             id='search_val',
             type='text',
             value = '',
-            placeholder= 'Start typting to search',
+            placeholder= 'Start typing to search',
             style={
                 'margin':30,
                 'width': '50%'

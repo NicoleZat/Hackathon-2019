@@ -24,6 +24,8 @@ app.layout = html.Div([
     html.Div(id='page-content')
 ])
 
+app.title = 'AI Black Box'
+
 ################
 # Callbacks
 

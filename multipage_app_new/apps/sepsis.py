@@ -86,7 +86,7 @@ layout = html.Div(
     html.H3('Interactive Tools', style={'margin-left': 30,'padding-left':90}),
     html.A('Sepsis AI', href='/apps/sepsisModel', style={'margin-left': 30,'padding-left':90}),
     html.H6(' '),
-    html.A('Concepts behind Sepsis AI: Linear Regression', href='/apps/logic', style={'margin-left': 30,'padding-left':90}),
+    html.A('Concepts behind Sepsis AI: Logistic Regression', href='/apps/logic', style={'margin-left': 30,'padding-left':90}),
     html.H6(' '),
     html.H3('More about Sepsis', style={'margin-left': 30,'padding-left':90}),
     html.H5('Development of CARS', style={'margin-left': 30,'padding-left':90}),
