@@ -6,6 +6,8 @@ import plotly.graph_objects as go
 import figureBackend
 import numpy as np
 from app import app
+import base64
+
 
 font_color1 = '#EEEEEE'
 back_color1 = '#2F4894'
@@ -19,6 +21,16 @@ example2.initData("sepsis_mockup_bad.csv")
 example3 = figureBackend.Example()
 example3.initData("sepsis_mockup.csv")
 
+
+logo_small = 'static/Blackbox logo-02.png'
+encoded_image = base64.b64encode(open(logo_small, 'rb').read())
+logo_small_thumb = html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()),
+            style={
+                'height' : '80%',
+                'margin': 10
+            })
+
+
 layout = html.Div(children=[
     html.Div(
         children=[
@@ -27,31 +39,26 @@ layout = html.Div(children=[
                 #inside div
                 html.Div(
                     children=[
-                        html.Img(
-                            src='https://i.imgur.com/Qp1SMwQ.png',
-                            style={
-                                'margin':10,
-                                'height': '80%',
-                                # 'width': '10%'
-                                   }
-                        ),
-                        #ul list components
+                        html.A(logo_small_thumb, href='/'),
+                        # ul list components
                         html.Ul(
                             children=[
-                               html.Li(html.A('Home', href='/', style={'color': font_color1})),
-                               html.Li(html.A('Tool Lookup', href='/apps/tool',style={'color': font_color1})),
-                               html.Li(html.A('Tutorial Videos', href='/apps/vid',style={'color': font_color1})),
+                                html.Li(html.A('Home', href='/', style={'color': font_color1})),
+                                html.Li(html.A('Tool Lookup', href='/apps/tool', style={'color': font_color1})),
+                                html.Li(html.A('Tutorial Videos', href='/apps/vid', style={'color': font_color1})),
                             ],
                             id='nav-mobile',
                             className='right hide-off-med-and-down'
                         ),
                     ],
                     className='nav-wrapper'
-                ),style={'background-color':back_color1}),
+                ), style={'background-color': '#151E3D'}),
         ],
         className='navbar-fixed'
     ),
 
+html.Div(
+    children=[
     html.H1(children='Logistic Regression'),
 
     html.Div(children='''
@@ -140,7 +147,7 @@ layout = html.Div(children=[
 
     dcc.Graph(
         id = 'pie-chart-3'
-    ),
+    )],style={'padding-left':120,'padding-right':120})
 
 ])
 

@@ -27,6 +27,16 @@ sep2_thumbnail = html.Img(src='data:image/png;base64,{}'.format(encoded_image.de
                 'margin': 30
             })
 
+
+logo_small = 'static/Blackbox logo-02.png'
+encoded_image = base64.b64encode(open(logo_small, 'rb').read())
+logo_small_thumb = html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()),
+            style={
+                'height' : '80%',
+                'margin': 10
+            })
+
+
 class Case:
     def __init__(self, Age, sex, oxygenSupp, haemoglobin, potassium, sodium, whiteCellCount, urea):
         self.Age = Age
@@ -65,31 +75,26 @@ layout = html.Div(children=[
                 #inside div
                 html.Div(
                     children=[
-                        html.Img(
-                            src='https://i.imgur.com/Qp1SMwQ.png',
-                            style={
-                                'margin':10,
-                                'height': '80%',
-                                # 'width': '10%'
-                                   }
-                        ),
-                        #ul list components
+                        html.A(logo_small_thumb, href='/'),
+                        # ul list components
                         html.Ul(
                             children=[
-                               html.Li(html.A('Home', href='/', style={'color': font_color1})),
-                               html.Li(html.A('Tool Lookup', href='/apps/tool',style={'color': font_color1})),
-                               html.Li(html.A('Tutorial Videos', href='/apps/vid',style={'color': font_color1})),
+                                html.Li(html.A('Home', href='/', style={'color': font_color1})),
+                                html.Li(html.A('Tool Lookup', href='/apps/tool', style={'color': font_color1})),
+                                html.Li(html.A('Tutorial Videos', href='/apps/vid', style={'color': font_color1})),
                             ],
                             id='nav-mobile',
                             className='right hide-off-med-and-down'
                         ),
                     ],
                     className='nav-wrapper'
-                ),style={'background-color':back_color1}),
+                ), style={'background-color': '#151E3D'}),
         ],
         className='navbar-fixed'
     ),
 
+    html.Div(
+    children=[
     html.H1(children='CARS: Computer Aided Risk Score for Sepsis'),
 
     html.Div(id='result'),
@@ -129,9 +134,11 @@ layout = html.Div(children=[
             {'label': 'No', 'value': 'n'},
         ],
         value='n'
-    ),
+    )],style={'padding-left':100,'padding-right':100}),
     #TODO: Beautify
     #NOTE: Box values don't change with loading a different patient
+    html.Div(
+    children=[
     html.Label('Age'),
     dcc.Input(id='age',value=healthyPatient.Age, type='number'),
 
@@ -153,24 +160,26 @@ layout = html.Div(children=[
     html.H2('Logistic Regression in Sepsis', style={'margin': 30} ),
 
     html.H4('Why is this sepsis Logistic Regression model useful?', style={'margin': 30} ),
-    html.H6('This model provides an automated estimate of the risk of sepsis in Emergency Department (ED) admitted patients based on the earliest vitals and lab data collected and resulted into a patient’s  Electronic-Health Record (EHR). This tool removes the need for additional clinical time in data collection and manual score calculation by predicting a patient’s propensity for sepsis fairly shortly after hospital admission with existing data. ', style={'margin': 30} ),
+    html.H6('This model provides an automated estimate of the risk of sepsis in Emergency Department (ED) admitted patients based on the earliest vitals and lab data collected and resulted into a patient’s  Electronic-Health Record (EHR). This tool removes the need for additional clinical time in data collection and manual score calculation by predicting a patient’s propensity for sepsis fairly shortly after hospital admission with existing data. ', style={'margin': 30},className='slimmish-paragraph' ),
     
     html.H4('What is Logistic Regression?', style={'margin': 30} ),
-    html.H6('Logistic regression is a mathematical modelling tool which classifies entities into groups based on the available data. ', style={'margin': 30} ),
-    html.H6('In the healthcare setting, the entities are often patients, and the classes we aim to predict are diseases or conditions.  ', style={'margin': 30} ),
-    html.H6('Logistic regression works by identifying linear relationships between predictor variables and the outcome variable. Then, it combines these contributions and transforms the data into a probability. In this example, the output is the probability that a patient will become septic.', style={'margin': 30} ),
+    html.H6('Logistic regression is a mathematical modelling tool which classifies entities into groups based on the available data. ', style={'margin': 30},className='slimmish-paragraph' ),
+    html.H6('In the healthcare setting, the entities are often patients, and the classes we aim to predict are diseases or conditions.  ', style={'margin': 30},className='slimmish-paragraph' ),
+    html.H6('Logistic regression works by identifying linear relationships between predictor variables and the outcome variable. Then, it combines these contributions and transforms the data into a probability. In this example, the output is the probability that a patient will become septic.', style={'margin': 30},className='slimmish-paragraph' ),
 
     html.H4('How is Logistic Regression used in the CARS Sepsis predictive model?', style={'margin': 30} ),
-    html.H6('For development of the CARS (Computed Aided RIsk of Sepsis) model, data from 26,000 patient ED admissions was analyzed using scatter and box plots to examine the relationship between patient variables and the outcome of sepsis. The variables analyzed comprise of age, sex, respiration rate, oxygen staturation, any supplemental oxygen, temperature, systolic blood pressure, heart rate, level of consciousness (alert, voice, pain, unrepsonsive), diastolic blood pressure, albumin, creatinine, hemoglobin, potassium, sodium, urea, white blood cell count (WBC), Acute Kidney Injury (AKI) score (0, 1, 2, 3), kidney function, and ICD-10 codes. ', style={'margin': 30} ),
-    html.H6('The CARS model weights some variables with a closer correlation to an outcome of sepsis higher because those variables are stronger predictors for developing sepsis (Figure 1). Those variables were AKI, patient consciousness, and WBC. However, all the variables listed above are taken into account to determine a patient’s proclivity for developing sepsis and severe sepsis. ', style={'margin': 30} ),
+    html.H6('For development of the CARS (Computed Aided RIsk of Sepsis) model, data from 26,000 patient ED admissions was analyzed using scatter and box plots to examine the relationship between patient variables and the outcome of sepsis. The variables analyzed comprise of age, sex, respiration rate, oxygen staturation, any supplemental oxygen, temperature, systolic blood pressure, heart rate, level of consciousness (alert, voice, pain, unrepsonsive), diastolic blood pressure, albumin, creatinine, hemoglobin, potassium, sodium, urea, white blood cell count (WBC), Acute Kidney Injury (AKI) score (0, 1, 2, 3), kidney function, and ICD-10 codes. ', style={'margin': 30},className='slimmish-paragraph' ),
+    html.H6('The CARS model weights some variables with a closer correlation to an outcome of sepsis higher because those variables are stronger predictors for developing sepsis (Figure 1). Those variables were AKI, patient consciousness, and WBC. However, all the variables listed above are taken into account to determine a patient’s proclivity for developing sepsis and severe sepsis. ', style={'margin': 30},className='slimmish-paragraph' ),
 
     sep1_thumbnail,
 
     html.H4('How reliable is the prediction and what to look for when evaluating a Logistic Regression?', style={'margin': 30} ),
-    html.H6('The CARS model has a good Coordination Statistic (c-statistic) of 0.73 for predicting all sepsis, 0.78 for sepsis, and 0.80 for severe sepsis. For c-statistics, a value of one is considered a perfect prediction and 0.5 is essentially a coin toss. The c-statistic explains how well a model can discriminate a sepsis case from a non-sepsis case. For this model, the 95 percent confidence intervals of the c-statistics are also very narrow, which further demonstrates the strength of the CARS model in predicting patient sepsis. ', style={'margin': 30} ),
-    html.H6('Additionally, the model uses a cut-off in the calculated predictive score which strikes a balance between test sensitivity and specificity. Like most diagnostic tools, it’s hard to have a test that is both highly sensitive and very specific, so this model achieves an average of 70 percent sensitivity and specificity.' , style={'margin': 30} ),
+    html.H6('The CARS model has a good Coordination Statistic (c-statistic) of 0.73 for predicting all sepsis, 0.78 for sepsis, and 0.80 for severe sepsis. For c-statistics, a value of one is considered a perfect prediction and 0.5 is essentially a coin toss. The c-statistic explains how well a model can discriminate a sepsis case from a non-sepsis case. For this model, the 95 percent confidence intervals of the c-statistics are also very narrow, which further demonstrates the strength of the CARS model in predicting patient sepsis. ', style={'margin': 30},className='slimmish-paragraph' ),
+    html.H6('Additionally, the model uses a cut-off in the calculated predictive score which strikes a balance between test sensitivity and specificity. Like most diagnostic tools, it’s hard to have a test that is both highly sensitive and very specific, so this model achieves an average of 70 percent sensitivity and specificity.' , style={'margin': 30},className='slimmish-paragraph' ),
 
-    sep2_thumbnail
+    sep2_thumbnail],style={'padding-left':90,'padding-right':90})
+
+
 ])
 
 @app.callback([Output(component_id='result', component_property='children'),Output('example-graph','figure')],[Input(component_id='age', component_property='value'),

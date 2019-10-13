@@ -28,6 +28,14 @@ our_thumbnail = html.Img(src='data:image/png;base64,{}'.format(encoded_image.dec
                 'margin': 30
             })
 
+logo_small = 'static/Blackbox logo-02.png'
+encoded_image = base64.b64encode(open(logo_small, 'rb').read())
+logo_small_thumb = html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()),
+            style={
+                'height' : '80%',
+                'margin': 10
+            })
+
 
 #############
 # Layout
@@ -41,20 +49,13 @@ layout = html.Div(
                 #inside div
                 html.Div(
                     children=[
-                        html.Img(
-                            src='https://i.imgur.com/Qp1SMwQ.png',
-                            style={
-                                'margin':10,
-                                'height': '80%',
-                                # 'width': '10%'
-                                   }
-                        ),
-                        #ul list components
+                        html.A(logo_small_thumb, href='/'),
+                        # ul list components
                         html.Ul(
                             children=[
-                               html.Li(html.A('Home', href='/', style={'color': font_color1})),
-                               html.Li(html.A('Tool Lookup', href='/apps/tool',style={'color': font_color1})),
-                               html.Li(html.A('Tutorial Videos', href='/apps/vid',style={'color': font_color1})),
+                                html.Li(html.A('Home', href='/', style={'color': font_color1})),
+                                html.Li(html.A('Tool Lookup', href='/apps/tool', style={'color': font_color1})),
+                                html.Li(html.A('Tutorial Videos', href='/apps/vid', style={'color': font_color1})),
                             ],
                             id='nav-mobile',
                             className='right hide-off-med-and-down'
