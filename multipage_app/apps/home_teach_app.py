@@ -50,13 +50,13 @@ layout = html.Div(
         html.Center(
             children=[
             html.Img(
-            src='https://i.imgur.com/vBjolrr.png',
+            src='https://i.imgur.com/Qp1SMwQ.png',
             style={
                 'height' : '35%',
                 'width' : '35%',
                 'float' : 'center',
                 'position' : 'relative',
-                'padding-top' : 0,
+                'padding-top' : 50,
                 'padding-right' : 0
             }),
                 html.Center(

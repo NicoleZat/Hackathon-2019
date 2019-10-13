@@ -16,7 +16,9 @@ encoded_image = base64.b64encode(open(image_filename, 'rb').read())
 filler_image = html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()),
             style={
                 'width':'25%',
-                'margin': 30
+                'margin': 30,
+                'opacity': 0.5,
+                'box-shadow': '5px 5px 5px #888888'
             })
 filler_list = [filler_image]*6
 
@@ -25,7 +27,8 @@ encoded_image = base64.b64encode(open(image_filename, 'rb').read())
 our_thumbnail = html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()),
             style={
                 'width':'25%',
-                'margin': 30
+                'margin': 30,
+                'box-shadow': '5px 5px 5px #888888'
             })
 video_list = [html.A(our_thumbnail, href='/apps/logic')]
     
@@ -41,54 +44,60 @@ video_list = [html.A(our_thumbnail, href='/apps/logic')]
 
 layout = html.Div(
     id='main-page-content',children= [
-    html.Div(
-        children=[
-            #nav bar
-            html.Nav(
-                #inside div
-                html.Div(
-                    children=[
-                        html.A(
-                            'Website Name',
-                            style={'margin':15, 'fontSize':30}
-                        ),
-                        #ul list components
-                        html.Ul(
-                            children=[
-                               html.Li(html.A('Home', href='/')),
-                               html.Li(html.A('Tool Lookup', href='/apps/tool')),
-                               html.Li(html.A('Tutorial Videos', href='/apps/vid'))
-                            ],
-                            id='nav-mobile',
-                            className='right hide-off-med-and-down'
-                        ), 
-                    ],
-                    className='nav-wrapper'
-                ),style={'background-color':'#4c586f'}),
-        ],
-        className='navbar-fixed'
-    ),
+        html.Div(
+            children=[
+                # nav bar
+                html.Nav(
+                    # inside div
+                    html.Div(
+                        children=[
+                            html.Img(
+                                src='https://i.imgur.com/Qp1SMwQ.png',
+                                style={
+                                    'margin': 10,
+                                    'height': '80%',
+                                    # 'width': '10%'
+                                }
+                            ),
+                            # ul list components
+                            html.Ul(
+                                children=[
+                                    html.Li(html.A('Home', href='/')),
+                                    html.Li(html.A('Tool Lookup', href='/apps/tool')),
+                                    html.Li(html.A('Tutorial Videos', href='/apps/vid')),
+                                ],
+                                id='nav-mobile',
+                                className='right hide-off-med-and-down'
+                            ),
+                        ],
+                        className='nav-wrapper'
+                    ), style={'background-color': '#66ccff'}),
+            ],
+            className='navbar-fixed'
+        ),
     html.Div(
         html.Center(
-        dcc.Markdown('''
-#### Video Tutorials
-search for the topic area you would like to know more about or browse available videos:
-    ''')  
+            children=[
+                html.H1('Video Tutorials'),
+                html.H5('Search for the topic area you would like to know more about, or browse available videos:')
+            ]
     ),
     ),
-    html.Div([
-        dcc.Input(
-            id='search_val',
-            type='text',
-            value = '',
-            placeholder= 'Start typting to search',
-            style={
-                'margin':30,
-                'width': '50%'
-            }
-        ),
-    ]),
-    html.Div(id='output_container', children=[])
+        html.Center(
+            html.Div([
+                dcc.Input(
+                    id='search_val',
+                    type='text',
+                    value = '',
+                    placeholder= 'Start typting to search',
+                    style={
+                        'margin':30,
+                        'width': '50%'
+                    }
+                ),
+    ])),
+        html.Center(
+    html.Div(id='output_container', children=[]))
     ])
 
 ################

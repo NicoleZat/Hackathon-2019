@@ -35,7 +35,6 @@ from apps import home_teach_app, vid, tool
 
 
 
-
 #################
 # App Layout
 
