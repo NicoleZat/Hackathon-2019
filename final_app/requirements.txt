@@ -1,5 +1,5 @@
 dash==1.4.0
-dash_html_components==1.0.1
+dash_html_components==2.0.0
 numpy==1.13.3
 pandas==0.20.3
 plotly==4.1.1
